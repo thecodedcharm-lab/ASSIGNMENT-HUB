@@ -271,3 +271,204 @@ Less repetition: Avoid writing the same code again.
 Easy debugging: Find and fix errors easily.
 
 //=====================================================================================================================================================================
+// Section 8: Function Scope
+//=====================================================================================================================================================================
+
+// Practical Questions
+
+// 1. Create a function showCity that declares a local variable city = "Ahmedabad" and prints it. After calling the function, try to print city outside and note what happens.
+
+function showCity() {
+    let city = "Ahmedabad";
+    console.log(city);
+}
+
+showCity();
+
+// console.log(city);              // ReferenceError: city is not defined
+
+// 2. Declare a global variable trainer = "CodingGita Mentor". Write a function displayTrainer that prints this global variable. Call the function and also print the variable outside the function.
+
+let trainer = "CodingGita Mentor";
+
+function displayTrainer() {
+    console.log(trainer);
+}
+
+displayTrainer();
+
+// console.log(trainer);              // ReferenceError: city is not defined
+
+// 3. Write a function demoScope that contains a local variable value = 50. Print the variable inside the function. Then try accessing the same variable outside and explain the output/error.
+
+function demoScope() {
+    let value = 50;
+    console.log(value);
+}
+
+demoScope();
+
+// console.log(value);                 // ReferenceError: city is not defined
+
+// Theory Questions
+
+// 4. A variable declared inside a function cannot be used outside. Why does JavaScript follow this rule? How does it help in writing better programs?
+
+// JavaScript follows this rule to protect local variables from being accessed or changed outside the function. It helps avoid errors, prevents variable name conflicts and makes programs easier to manage.
+
+// 5. What will happen if a global variable and a local variable have the same name? Which one will the function use? Explain briefly.
+
+// If a global and local variable have the same name, the function uses the local variable because it has priority inside that function. The global variable remains unchanged.
+
+let num = 10;
+
+function show() {
+    let num = 20;
+    console.log(num);
+}
+
+show();
+console.log(num);
+
+//=====================================================================================================================================================================
+// Section 9: Combining Function Concepts
+//=====================================================================================================================================================================
+
+// Practical Questions
+
+// 1. Write a function generateMessage(name, score) that calculates whether the student has passed (score ≥ 40) and returns a complete sentence like: "Aarav has scored 65 and the result is Pass".
+
+function generateMessage(name, score) {
+    if (score >= 40) {
+        return name + " has scored " + score + " and the result is Pass";
+    }
+    else {
+        return name + " has scored " + score + " and the result is Fail";
+    }
+}
+
+console.log(generateMessage("Aarav", 65));
+
+// 2. Create a function billCalculator(item1, item2, item3) that returns the total amount and also mentions if the customer gets a discount (total ≥ 1000 → "Discount Applied", otherwise "No Discount").
+
+function billCalculator(item1, item2, item3) {
+    let total = item1 + item2 + item3;
+
+    if (total >= 1000) {
+        return "Total = " + total + " Discount Applied";
+    }
+    else {
+        return "Total = " + total + " No Discount";
+    }
+}
+
+console.log(billCalculator(400, 350, 300));
+
+// 3. Write a function performanceReport(student, m1, m2, m3) that calculates total and average, then returns a formatted string containing name, total, average and a remark ("Excellent" if average ≥ 80, otherwise "Keep Improving").
+
+function performanceReport(student, m1, m2, m3) {
+    let total = m1 + m2 + m3;
+    let average = total / 3;
+
+    if (average >= 80) {
+        return student + " Total = " + total + " Average = " + average + " Excellent";
+    }
+    else {
+        return student + " Total = " + total + " Average = " + average + " Keep Improving";
+    }
+}
+
+console.log(performanceReport("Aarav", 90, 85, 95));
+
+// Theory Questions
+
+// 4. Why is it better to perform multiple related tasks (calculation + decision + message) inside one function instead of writing separate pieces of code?
+
+// It is better because it keeps related code together. It makes the program shorter, easier to understand, reusable and easier to maintain.
+
+// 5. How does combining concepts like parameters, return and conditions inside a single function improve code quality?
+
+// Parameters allow us to give different inputs, conditions help make decisions, and return gives the final result. Combining them makes functions reusable, organized and efficient.
+
+//=====================================================================================================================================================================
+// Section 10: Nested Functions
+//=====================================================================================================================================================================
+
+// Practical Questions
+
+// 1. Write a function mainTask that contains an inner function helperTask. The inner function should return "Task completed successfully". Call the inner function from mainTask and return its result.
+
+function mainTask() {
+    function helperTask() {
+        return "Task completed successfully";
+    }
+
+    return helperTask();
+}
+
+console.log(mainTask());
+
+// 2. Create a function calculateFinal(m1, m2) that has an inner function getTotal to add the marks. Use the inner function and return a message: "Final marks = " followed by the total.
+
+function calculateFinal(m1, m2) {
+    function getTotal() {
+        return m1 + m2;
+    }
+
+    return "Final marks = " + getTotal();
+}
+
+console.log(calculateFinal(40, 50));
+
+// 3. Write a function studentStatus(name, marks) containing an inner function getGrade. The inner function returns "A" if marks ≥ 80, "B" if marks ≥ 60, otherwise "C". Return a final sentence using the name and grade.
+
+function studentStatus(name, marks) {
+    function getGrade() {
+        if (marks >= 80) {
+            return "A";
+        }
+        else if (marks >= 60) {
+            return "B";
+        }
+        else {
+            return "C";
+        }
+    }
+
+    return name + " has grade " + getGrade();
+}
+
+console.log(studentStatus("Aarav", 85));
+
+// Theory Questions
+
+// 4. What is the main advantage of writing a function inside another function? When should we use nested functions?
+
+// The main advantage is that we can keep helper functions inside the main function. It makes code organized and prevents unnecessary access to helper functions from outside.
+
+// We use nested functions when a smaller task is needed only inside another function.
+
+// 5. Can an inner function access variables of the outer function? What about the reverse (outer accessing inner variables)? Explain.
+
+// Yes, an inner function can access variables of its outer function because of lexical scope.
+
+// But the outer function cannot directly access variables declared inside the inner function.
+
+function outer() {
+    let a = 10;
+
+    function inner() {
+        let b = 20;
+        console.log(a);
+        console.log(b);
+    }
+
+    inner();
+
+    console.log(a);
+    // console.log(b); Error
+}
+
+outer();
+
+//=====================================================================================================================================================================
