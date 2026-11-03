@@ -1,0 +1,94 @@
+* {
+  box-sizing: border-box;
+  }
+
+body {
+margin: 0;
+background: black;
+font-family: Georgia, serif;
+}
+
+.container {
+width: 93%;
+min-height: 690px;
+margin: 47px auto 0;
+background: white;
+display: flex;
+justify-content: center;
+align-items: flex-start;
+gap: 110px;
+padding: 6px 20px;
+}
+
+.team {
+display: flex;
+gap: 18px;
+}
+
+.card {
+width: 135px;
+height: 230px;
+border: 2px solid #ddd;
+border-radius: 8px;
+box-shadow: 0 0 4px #ccc;
+text-align: center;
+padding: 15px 5px;
+}
+
+.card img {
+width: 100px;
+height: 100px;
+object-fit: contain;
+}
+
+.card p {
+margin: 0;
+font-size: 16px;
+}
+
+.card h1 {
+margin: 4px 0;
+font-size: 42px;
+font-weight: normal;
+}
+
+.score {
+font-size: 46px;
+font-weight: normal;
+margin: 0;
+}
+
+@media (max-width: 750px) {
+.container {
+flex-direction: column;
+align-items: center;
+gap: 25px;
+min-height: 100vh;
+}
+
+
+.team {
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.score {
+    order: -1;
+    font-size: 36px;
+}
+
+
+}
+
+@media (max-width: 350px) {
+.card {
+width: 120px;
+}
+
+
+.team {
+    gap: 10px;
+}
+
+
+}
