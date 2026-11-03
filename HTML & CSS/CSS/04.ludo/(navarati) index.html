@@ -1,0 +1,758 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garba Night Ludo</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 40px 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            overflow-x: hidden;
+            background:
+                radial-gradient(ellipse at top, #54204f 0%, transparent 60%),
+                radial-gradient(ellipse at bottom, #351b49 0%, #150e29 75%);
+            font-family: Georgia, serif;
+        }
+
+        .lights {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: space-evenly;
+            position: relative;
+            padding: 12px 0;
+            border-top: 2px solid #c98a43;
+        }
+
+        .light {
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #ffe6a0;
+            box-shadow:
+                0 0 8px #ffd166,
+                0 0 20px #ffb347;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        .light:nth-child(2n) {
+            animation-delay: 0.5s;
+        }
+
+        .light:nth-child(3n) {
+            background: #ff8fbd;
+            box-shadow: 0 0 12px #ff8fbd;
+            animation-delay: 0.8s;
+        }
+
+        @keyframes glow {
+            from {
+                opacity: 0.55;
+                transform: scale(0.85);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1.15);
+            }
+        }
+
+
+        .heading {
+            color: #ffe6a0;
+            text-align: center;
+            font-size: 36px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            text-shadow:
+                0 0 10px #e9a44b,
+                0 0 25px #b65b28;
+        }
+
+        .subtitle {
+            color: #f5c5d8;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 5px;
+            margin-top: 10px;
+        }
+
+
+        .toran {
+            width: 100%;
+            max-width: 650px;
+            height: 36px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            border-top: 3px solid #dba65b;
+            position: relative;
+        }
+
+        .toran span {
+            width: 20px;
+            height: 28px;
+            background: #27775d;
+            border: 2px solid #e5b65e;
+            border-radius: 0 0 12px 12px;
+            clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+        }
+
+        .toran span:nth-child(3n) {
+            background: #b72f51;
+        }
+
+        .toran span:nth-child(3n + 1) {
+            background: #d98b32;
+        }
+
+
+        .board {
+            width: min(600px, 94vw);
+            aspect-ratio: 1 / 1;
+            background: #fff4d9;
+            border: 5px solid #d7a34e;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            box-shadow:
+                0 0 0 5px #713b57,
+                0 0 0 8px #e6bd70,
+                0 15px 45px #00000070,
+                0 0 35px #d18b4d40;
+        }
+
+        .board::before {
+            content: "";
+            position: absolute;
+            inset: 4px;
+            border: 2px dashed #d7a34e;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .first,
+        .second,
+        .third {
+            width: 100%;
+            display: flex;
+            position: relative;
+        }
+
+        .first {
+            height: 40%;
+        }
+
+        .second {
+            height: 20%;
+        }
+
+        .third {
+            height: 40%;
+        }
+
+
+        .red,
+        .green,
+        .blue,
+        .yellow {
+            width: 40%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .red {
+            background-color: #b83253;
+            background-image:
+                radial-gradient(circle, #e7a3b3 1.5px, transparent 2px);
+            background-size: 13px 13px;
+        }
+
+        .green {
+            background-color: #236c50;
+            background-image:
+                radial-gradient(circle, #a7d4a4 1.5px, transparent 2px);
+            background-size: 13px 13px;
+        }
+
+        .blue {
+            background-color: #254b87;
+            background-image:
+                radial-gradient(circle, #9db9e9 1.5px, transparent 2px);
+            background-size: 13px 13px;
+        }
+
+        .yellow {
+            background-color: #d58a27;
+            background-image:
+                radial-gradient(circle, #ffe3a0 1.5px, transparent 2px);
+            background-size: 13px 13px;
+        }
+
+
+        .token-container {
+            width: 75%;
+            height: 75%;
+            background: #fff4df;
+            border: 4px double #d5a34d;
+            outline: 2px solid #fff0c8;
+            outline-offset: 3px;
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-content: space-evenly;
+            position: relative;
+            z-index: 1;
+        }
+
+        .token-container::before {
+            content: "✦";
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #f5d180;
+            font-size: 19px;
+            text-shadow: 0 0 8px #dba34a;
+        }
+
+        .token {
+            width: 35%;
+            height: 35%;
+            border-radius: 50%;
+            border: 4px solid #fff9e9;
+            box-shadow:
+                inset 0 0 0 2px #ffffff70,
+                0 3px 7px #30162c80;
+            position: relative;
+        }
+
+        .token::after {
+            content: "✦";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+            color: #fff4dc;
+        }
+
+        .pink-token {
+            background: radial-gradient(circle at 30% 25%, #f8c4cf, #b83253 75%);
+        }
+
+        .green-token {
+            background: radial-gradient(circle at 30% 25%, #bde5ad, #236c50 75%);
+        }
+
+        .blue-token {
+            background: radial-gradient(circle at 30% 25%, #c5d9ff, #254b87 75%);
+        }
+
+        .yellow-token {
+            background: radial-gradient(circle at 30% 25%, #fff0b3, #c87920 75%);
+        }
+
+        /* TRACKS */
+
+        .space {
+            width: 20%;
+            height: 100%;
+            display: flex;
+            background: #fff6e5;
+        }
+
+        .column {
+            width: 33.333%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .square {
+            width: 100%;
+            height: 16.6667%;
+            flex: 1;
+            border: 1px solid #d8bd8c;
+            background: #fff6e5;
+            position: relative;
+        }
+
+        .square::after {
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #d5b16e;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .square.GREEN,
+        .square.PINK,
+        .square.BLUE,
+        .square.YELLOW {
+            border: 1px solid #fff0cf;
+        }
+
+        .square.GREEN {
+            background: #398568;
+        }
+
+        .square.PINK {
+            background: #d95876;
+        }
+
+        .square.BLUE {
+            background: #527fc2;
+        }
+
+        .square.YELLOW {
+            background: #e9b54c;
+        }
+
+        .square.GREEN::after,
+        .square.PINK::after,
+        .square.BLUE::after,
+        .square.YELLOW::after {
+            background: #fff0cf;
+        }
+
+
+        .left-space,
+        .right-space {
+            width: 40%;
+            height: 100%;
+            display: flex;
+        }
+
+        .left-space .row,
+        .right-space .row {
+            width: 16.6667%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .left-space .square,
+        .right-space .square {
+            width: 100%;
+            height: 33.3333%;
+            flex: 1;
+        }
+
+        .center {
+            width: 20%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background: #542344;
+        }
+
+        .triangle {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            inset: 0;
+        }
+
+        .Pink {
+            background: #d95876;
+            clip-path: polygon(0 0, 0 100%, 50% 50%);
+        }
+
+        .Green {
+            background: #398568;
+            clip-path: polygon(0 0, 100% 0, 50% 50%);
+        }
+
+        .Blue {
+            background: #527fc2;
+            clip-path: polygon(0 100%, 100% 100%, 50% 50%);
+        }
+
+        .Yellow {
+            background: #e9b54c;
+            clip-path: polygon(100% 0, 100% 100%, 50% 50%);
+        }
+
+
+        .mandala {
+            width: 31%;
+            aspect-ratio: 1;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            border: 3px double #ffdf91;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle, #ffedb7 0 8%, #c87b35 9% 16%, #702c54 17% 35%, #f3c76c 36% 39%, #8f3657 40% 58%, #e7b85f 59% 63%, #6d2d57 64%);
+            box-shadow:
+                0 0 0 3px #e6b75f,
+                0 0 18px #ffda8a;
+            animation: mandalaGlow 3s ease-in-out infinite alternate;
+        }
+
+        .mandala::before,
+        .mandala::after {
+            content: "";
+            position: absolute;
+            inset: 12%;
+            border: 2px dashed #ffe9a9;
+            border-radius: 50%;
+        }
+
+        .mandala::after {
+            inset: 27%;
+            border-style: solid;
+            border-color: #ffe9a9;
+            transform: rotate(45deg);
+        }
+
+        @keyframes mandalaGlow {
+            from {
+                box-shadow: 0 0 0 3px #e6b75f, 0 0 10px #ffda8a;
+            }
+
+            to {
+                box-shadow: 0 0 0 4px #ffe2a0, 0 0 24px #ffbd68;
+            }
+        }
+
+
+        .footer {
+            color: #e9c68d;
+            text-align: center;
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .footer span {
+            color: #ff9ebc;
+        }
+
+
+        @media (max-width: 500px) {
+            body {
+                padding: 25px 10px;
+                gap: 18px;
+            }
+
+            .heading {
+                font-size: 25px;
+                letter-spacing: 3px;
+            }
+
+            .subtitle {
+                font-size: 9px;
+                letter-spacing: 3px;
+            }
+
+            .board {
+                border-width: 3px;
+            }
+
+            .token {
+                border-width: 2px;
+            }
+
+            .token::after {
+                font-size: 9px;
+            }
+
+            .footer {
+                font-size: 9px;
+                letter-spacing: 2px;
+            }
+
+            .toran span {
+                width: 14px;
+                height: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="heading">Garba Night</div>
+    <div class="subtitle">NAVRATRI • COLOURS • CELEBRATION</div>
+
+    <div class="lights">
+        <span class="light"></span>
+        <span class="light"></span>
+        <span class="light"></span>
+        <span class="light"></span>
+        <span class="light"></span>
+        <span class="light"></span>
+        <span class="light"></span>
+        <span class="light"></span>
+        <span class="light"></span>
+        <span class="light"></span>
+        <span class="light"></span>
+        <span class="light"></span>
+        <span class="light"></span>
+    </div>
+
+    <div class="toran">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="board">
+
+        <!-- TOP ROW -->
+
+        <div class="first">
+
+            <div class="red">
+                <div class="token-container">
+                    <div class="token pink-token"></div>
+                    <div class="token pink-token"></div>
+                    <div class="token pink-token"></div>
+                    <div class="token pink-token"></div>
+                </div>
+            </div>
+
+            <div class="space">
+                <div class="column">
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                </div>
+
+                <div class="column">
+                    <div class="square"></div>
+                    <div class="square GREEN"></div>
+                    <div class="square GREEN"></div>
+                    <div class="square GREEN"></div>
+                    <div class="square GREEN"></div>
+                    <div class="square GREEN"></div>
+                </div>
+
+                <div class="column">
+                    <div class="square"></div>
+                    <div class="square GREEN"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                </div>
+            </div>
+
+            <div class="green">
+                <div class="token-container">
+                    <div class="token green-token"></div>
+                    <div class="token green-token"></div>
+                    <div class="token green-token"></div>
+                    <div class="token green-token"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- MIDDLE ROW -->
+
+        <div class="second">
+
+            <div class="left-space">
+
+                <div class="row">
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                </div>
+
+                <div class="row">
+                    <div class="square PINK"></div>
+                    <div class="square PINK"></div>
+                    <div class="square"></div>
+                </div>
+
+                <div class="row">
+                    <div class="square"></div>
+                    <div class="square PINK"></div>
+                    <div class="square"></div>
+                </div>
+
+                <div class="row">
+                    <div class="square"></div>
+                    <div class="square PINK"></div>
+                    <div class="square"></div>
+                </div>
+
+                <div class="row">
+                    <div class="square"></div>
+                    <div class="square PINK"></div>
+                    <div class="square"></div>
+                </div>
+
+                <div class="row">
+                    <div class="square"></div>
+                    <div class="square PINK"></div>
+                    <div class="square"></div>
+                </div>
+
+            </div>
+
+            <div class="center">
+                <div class="triangle Pink"></div>
+                <div class="triangle Green"></div>
+                <div class="triangle Blue"></div>
+                <div class="triangle Yellow"></div>
+                <div class="mandala"></div>
+            </div>
+
+            <div class="right-space">
+
+                <div class="row">
+                    <div class="square"></div>
+                    <div class="square YELLOW"></div>
+                    <div class="square"></div>
+                </div>
+
+                <div class="row">
+                    <div class="square"></div>
+                    <div class="square YELLOW"></div>
+                    <div class="square"></div>
+                </div>
+
+                <div class="row">
+                    <div class="square"></div>
+                    <div class="square YELLOW"></div>
+                    <div class="square"></div>
+                </div>
+
+                <div class="row">
+                    <div class="square"></div>
+                    <div class="square YELLOW"></div>
+                    <div class="square"></div>
+                </div>
+
+                <div class="row">
+                    <div class="square"></div>
+                    <div class="square YELLOW"></div>
+                    <div class="square YELLOW"></div>
+                </div>
+
+                <div class="row">
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="third">
+
+            <div class="blue">
+                <div class="token-container">
+                    <div class="token blue-token"></div>
+                    <div class="token blue-token"></div>
+                    <div class="token blue-token"></div>
+                    <div class="token blue-token"></div>
+                </div>
+            </div>
+
+            <div class="space">
+
+                <div class="column">
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square BLUE"></div>
+                    <div class="square"></div>
+                </div>
+
+                <div class="column">
+                    <div class="square BLUE"></div>
+                    <div class="square BLUE"></div>
+                    <div class="square BLUE"></div>
+                    <div class="square BLUE"></div>
+                    <div class="square BLUE"></div>
+                    <div class="square"></div>
+                </div>
+
+                <div class="column">
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                </div>
+
+            </div>
+
+            <div class="yellow">
+                <div class="token-container">
+                    <div class="token yellow-token"></div>
+                    <div class="token yellow-token"></div>
+                    <div class="token yellow-token"></div>
+                    <div class="token yellow-token"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="toran">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="footer">
+        Made for the festive season <span>✦</span> Garba Edition
+    </div>
+
+</body>
+</html>
