@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #F5EFFA;
+        }
+
+        .board {
+            width: 600px;
+            height: 600px;
+            background: #FFFCF7;
+            border: 3px solid #DCCCE8;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .first {
+            width: 100%;
+            height: 40%;
+            display: flex;
+        }
+
+        .red {
+            width: 40%;
+            height: 100%;
+            background: #F8D1DE;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .token-container {
+            width: 75%;
+            height: 75%;
+            background: #fffaf5;
+            border: 2px solid #e8dfe9;
+            border-radius: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-content: space-evenly;
+        }
+
+        .token {
+            width: 35%;
+            height: 35%;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 3px 5px #00000030;
+        }
+
+        .pink-token {
+            background: #EFA2BD;
+        }
+
+        .blue-token{
+            background: #96B5EE;
+        }
+
+        .green-token{
+            background: #91CDA5;
+        }
+
+        .yellow-token{
+            background: #F0D38A;
+        }
+
+        .space {
+            width: 20%;
+            height: 100%;
+            display: flex;
+            background: #fffaf5;
+        }
+
+        .column {
+            width: 33.333%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .square {
+            width: 100%;
+            height: 16.6667%;
+            border: 1px solid #e8dfe9;
+            background: #fffaf5;
+        }
+
+
+
+        .green {
+            width: 40%;
+            height: 100%;
+            background: #D2EAD8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .second {
+            width: 100%;
+            height: 20%;
+            display: flex;
+        }
+        .left-space {
+            width: 40%;
+            height: 100%;
+            display: flex;
+        }
+
+        .left-space .row {
+            width: 33.333%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .left-space  .square {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #e8dfe9;
+            background: #fffaf5;
+        }
+
+        .left-space .square.PINK {
+            background: #F5C0D2;
+        }
+        .center {
+            width: 20%;
+            height: 100%;
+            position: relative  ;
+
+        }
+
+        .triangle {
+            width: 100%;
+            height: 100%;
+            position: absolute ;
+        }
+
+        .Pink {
+            background: #F5C0D2;
+            clip-path: polygon(0 0, 0 100%, 50% 50%);
+        }
+
+        .Green {
+            background: #BFE2CA;
+            clip-path: polygon(0 0, 100% 0, 50% 50%);
+        }
+
+        .Blue {
+            background: #BED2F5;
+            clip-path: polygon(0 100%, 100% 100%, 50% 50%);
+        }
+
+        .Yellow {
+            background: #FBE5AD;
+            clip-path: polygon(100% 0, 100% 100%, 50% 50%);
+        }
+
+        .right-space {
+            width: 40%;
+            height: 100%;
+            display: flex;
+        }
+
+        .right-space .row {
+            width: 33.333%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right-space .square {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #e8dfe9;
+            background: #fffaf5;
+        }
+
+        .right-space .square.YELLOW {
+            background: #FBE5AD;
+        }
+
+        .third {
+            width: 100%;
+            height: 40%;
+            display: flex;
+        }
+
+        .blue {
+            width: 40%;
+            height: 100%;
+            background: #D2DFFA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .yellow{
+            width: 40%;
+            height: 100%;
+            background: #FFF0CE;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .PINK{
+            background: #F5C0D2;
+        }
+
+        .GREEN{
+            background: #BFE2CA;
+        }
+
+        .BLUE{
+            background: #BED2F5;
+        }
+
+        .YELLOW{
+            background: #FBE5AD; 
+        }
+    </style>
+</head>
+<body>
+    <div class="board">
+
+    <div class="first">
+        <div class="red">
+            <div class="token-container">
+                <div class="token pink-token"></div>
+                <div class="token pink-token"></div>
+                <div class="token pink-token"></div>
+                <div class="token pink-token"></div>
+            </div>
+        </div>
+        <div class="space">
+            <div class="column"> 
+                <div class="square"></div> 
+                <div class="square"></div> 
+                <div class="square"></div> 
+                <div class="square"></div> 
+                <div class="square"></div> 
+                <div class="square"></div> 
+            </div>
+             <div class="column"> 
+                <div class="square"></div> 
+                <div class="square GREEN"></div> 
+                <div class="square GREEN"></div> 
+                <div class="square GREEN"></div> 
+                <div class="square GREEN"></div> 
+                <div class="square GREEN"></div> 
+            </div>
+             <div class="column"> 
+                <div class="square"></div> 
+                <div class="square GREEN"></div> 
+                <div class="square"></div> 
+                <div class="square"></div> 
+                <div class="square"></div> 
+                <div class="square"></div> 
+            </div>
+        </div>
+        <div class="green">
+            <div class="token-container">
+                <div class="token green-token"></div>
+                <div class="token green-token"></div>
+                <div class="token green-token"></div>
+                <div class="token green-token"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="second">
+
+        <div class="left-space">
+            <div class="row">
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+            </div>
+
+            <div class="row">
+                <div class="square PINK"></div>
+                <div class="square PINK"></div>
+                <div class="square"></div>
+            </div>
+
+            <div class="row">
+                <div class="square"></div>
+                <div class="square PINK"></div>
+                <div class="square"></div>
+            </div>
+
+            <div class="row">
+                <div class="square"></div>
+                <div class="square PINK"></div>
+                <div class="square"></div>
+            </div>
+
+            <div class="row">
+                <div class="square"></div>
+                <div class="square PINK"></div>
+                <div class="square"></div>
+            </div>
+
+            <div class="row">
+                <div class="square"></div>
+                <div class="square PINK"></div>
+                <div class="square"></div>
+            </div>
+        </div>
+
+        <div class="center">
+            <div class="triangle Pink"></div>
+            <div class="triangle Green"></div>
+            <div class="triangle Blue"></div>
+            <div class="triangle Yellow"></div>
+        </div>
+
+        <div class="right-space">
+                <div class="row">
+                <div class="square"></div>
+                <div class="square YELLOW"></div>
+                <div class="square"></div>
+            </div>
+
+            <div class="row">
+                <div class="square"></div>
+                <div class="square YELLOW"></div>
+                <div class="square"></div>
+            </div>
+
+            <div class="row">
+                <div class="square"></div>
+                <div class="square YELLOW"></div>
+                <div class="square"></div>
+            </div>
+
+            <div class="row">
+                <div class="square"></div>
+                <div class="square YELLOW"></div>
+                <div class="square"></div>
+            </div>
+
+            <div class="row">
+                <div class="square"></div>
+                <div class="square YELLOW"></div>
+                <div class="square YELLOW"></div>
+            </div>
+
+            <div class="row">
+                <div class="square"></div>
+                <div class="square "></div>
+                <div class="square"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="third">
+        <div class="blue">
+            <div class="token-container">
+                <div class="token blue-token"></div>
+                <div class="token blue-token"></div>
+                <div class="token blue-token"></div>
+                <div class="token blue-token"></div>
+            </div>  
+        </div>
+        <div class="space">
+             <div class="column"> 
+                <div class="square"></div> 
+                <div class="square"></div> 
+                <div class="square"></div> 
+                <div class="square"></div> 
+                <div class="square BLUE"></div> 
+                <div class="square"></div> 
+            </div>
+             <div class="column"> 
+                <div class="square BLUE"></div> 
+                <div class="square BLUE"></div> 
+                <div class="square BLUE"></div> 
+                <div class="square BLUE"></div> 
+                <div class="square BLUE"></div> 
+                <div class="square"></div> 
+            </div>
+             <div class="column"> 
+                <div class="square"></div> 
+                <div class="square"></div> 
+                <div class="square"></div> 
+                <div class="square"></div> 
+                <div class="square"></div> 
+                <div class="square"></div> 
+            </div>
+        </div>
+        <div class="yellow">
+            <div class="token-container">
+                <div class="token yellow-token"></div>
+                <div class="token yellow-token"></div>
+                <div class="token yellow-token"></div>
+                <div class="token yellow-token"></div>
+            </div>  
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
