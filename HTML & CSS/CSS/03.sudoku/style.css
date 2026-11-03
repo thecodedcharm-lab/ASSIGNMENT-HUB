@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background: white;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    padding: 30px;
+}
+
+.sudoku-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    font-size: 23px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.board {
+    width: 296px;
+    height: 296px;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    border: 2px solid #222;
+}
+
+.board span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.7px solid #999;
+    font-size: 23px;
+    font-weight: 400;
+    color: #222;
+}
+
+/* Green highlighted boxes */
+
+.board span:nth-child(4),
+.board span:nth-child(5),
+.board span:nth-child(6),
+.board span:nth-child(13),
+.board span:nth-child(14),
+.board span:nth-child(15),
+.board span:nth-child(22),
+.board span:nth-child(23),
+.board span:nth-child(24),
+.board span:nth-child(28),
+.board span:nth-child(29),
+.board span:nth-child(30),
+.board span:nth-child(34),
+.board span:nth-child(35),
+.board span:nth-child(36),
+.board span:nth-child(37),
+.board span:nth-child(38),
+.board span:nth-child(39),
+.board span:nth-child(43),
+.board span:nth-child(44),
+.board span:nth-child(45),
+.board span:nth-child(46),
+.board span:nth-child(47),
+.board span:nth-child(48),
+.board span:nth-child(52),
+.board span:nth-child(53),
+.board span:nth-child(54),
+.board span:nth-child(58),
+.board span:nth-child(59),
+.board span:nth-child(60),
+.board span:nth-child(67),
+.board span:nth-child(68),
+.board span:nth-child(69),
+.board span:nth-child(76),
+.board span:nth-child(77),
+.board span:nth-child(78) {
+    background-color: #a9d8bd;
+}
+
+/* Thick vertical lines */
+
+.board span:nth-child(3n) {
+    border-right: 2px solid #222;
+}
+
+/* Thick horizontal lines */
+
+.board span:nth-child(n+19):nth-child(-n+27),
+.board span:nth-child(n+46):nth-child(-n+54) {
+    border-bottom: 2px solid #222;
+}
+
+/* Responsive design */
+
+@media (max-width: 700px) {
+    .container {
+        flex-direction: column;
+        gap: 35px;
+    }
+
+    .board {
+        width: min(296px, 85vw);
+        height: min(296px, 85vw);
+    }
+
+    .board span {
+        font-size: clamp(15px, 5vw, 23px);
+    }
+}
