@@ -1,0 +1,85 @@
+Assignment 1: Understanding the Need for VCS
+Objective: Explain why Version Control is required.
+
+Tasks:
+
+Write a short real-life example (similar to final.doc, final2.doc, final_final.doc) showing problems without VCS.
+List at least 5 problems that occur when multiple people work on files without Version Control.
+In your own words, define what a Version Control System (VCS) is.
+Write 3 benefits of using a VCS in a college project or team project.
+Submission: Written answers (1 page)
+<img width="960" height="1280" alt="a 01" src="https://github.com/user-attachments/assets/3983cb3b-b176-4969-a1c7-2122cf32ea62" />
+<img width="960" height="1280" alt="a 01 2 - Copy" src="https://github.com/user-attachments/assets/fe81ea53-cfc8-4344-be51-5c918f4f9681" />
+
+
+Assignment 2: Types of Version Control Systems
+Objective: Understand the three types of VCS with examples and diagrams.
+
+Tasks:
+
+Explain the following with simple diagrams (hand-drawn or digital):
+Local Version Control System
+Centralized Version Control System (CVCS)
+Distributed Version Control System (DVCS)
+Give 2 examples of each type.
+Write 2 advantages and 2 disadvantages of each type.
+Which type is Git? Justify your answer in 3–4 lines.
+Submission: Diagrams + written explanation
+
+<img width="960" height="1280" alt="a 02 1" src="https://github.com/user-attachments/assets/b98cb939-3528-4856-b0e1-79570d10d616" />
+<img width="960" height="1280" alt="a 02 2" src="https://github.com/user-attachments/assets/e20c4741-6b1d-4f9a-9dca-f97dab098d99" />
+<img width="960" height="1280" alt="a 02 3" src="https://github.com/user-attachments/assets/825bb254-613f-41cc-ae4a-af890f79202f" />
+<img width="960" height="1280" alt="a o2 4" src="https://github.com/user-attachments/assets/a95761e0-79c7-428f-9f21-414296a20361" />
+
+
+Assignment 3: Comparison Table + Analysis
+Objective: Compare different types of VCS.
+
+Tasks:
+
+Create a comparison table with the following columns:
+Feature	Local VCS	Centralized VCS	Distributed VCS
+History stored where?			
+Collaboration			
+Works offline?			
+Single point of failure			
+Examples			
+Answer the following:
+Why is Centralized VCS better than Local VCS?
+Why is Distributed VCS considered better than Centralized VCS for modern teams?
+What is the biggest disadvantage of Centralized VCS?
+Submission: Completed table + answers
+
+<img width="960" height="1280" alt="a 03 1" src="https://github.com/user-attachments/assets/2b46010a-1058-4ed3-b924-a6321df7a11d" />
+
+Assignment 4: Why Git is the Most Popular VCS
+Objective: Understand the reasons behind Git’s popularity.
+
+Tasks:
+
+Who created Git and in which year?
+List any 6 reasons why Git became the most popular Version Control System.
+Explain the following points in your own words (3–4 lines each):
+Distributed nature of Git
+Powerful branching
+Speed of Git
+Name any 3 platforms that work with Git (example: GitHub).
+Submission: Written answers
+<img width="960" height="1280" alt="A 04 1" src="https://github.com/user-attachments/assets/b60675f6-6fad-49b4-9b21-6facc48f5d39" />
+
+
+Assignment 5: Conceptual + Real-Life Application
+Objective: Apply the concepts of VCS to a practical situation.
+
+Tasks:
+
+Imagine you and 3 classmates are working on a final year project (website or app).
+Which type of VCS will you choose and why?
+Explain what problems you might face if you use only Google Drive / shared folder instead of VCS.
+Draw a simple workflow showing how a Distributed VCS (like Git) helps your team.
+Write 4 key takeaways you learned from Day 1.
+Submission: Written answers + diagram
+
+<img width="960" height="1280" alt="A 05 01" src="https://github.com/user-attachments/assets/026a0291-07f4-4208-b23f-99df4ed576b0" />
+<img width="960" height="1280" alt="A 05 2" src="https://github.com/user-attachments/assets/f845c019-a5e1-4dfa-8bca-78295deb3aa5" />
+<img width="960" height="1280" alt="A 05 3" src="https://github.com/user-attachments/assets/e53e40ac-8f6f-4871-b38c-a03bca424289" />
